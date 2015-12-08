@@ -17,13 +17,6 @@ static const char *minNavTopKey = "minNavTopKey";
 static const char *maxScrollDistanceKey = "maxScrollDistanceKey";
 static const char *amassKey = "amassKey";
 
-//static char panGestureKey;
-//static char scrollViewKey;
-//static char maxNavTopKey;
-//static char minNavTopKey;
-//static char maxScrollDistanceKey;
-//static char amassKey;
-
 
 @implementation UIViewController (FHAnimateViewController)
 
@@ -102,6 +95,7 @@ static const char *amassKey = "amassKey";
         self.panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanAction:)];
         self.panGesture.maximumNumberOfTouches = 1;
         self.panGesture.delegate = self;
+        self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         [self.scrollView addGestureRecognizer:self.panGesture];
         [self resetParams];
         return YES;
@@ -168,7 +162,10 @@ static const char *amassKey = "amassKey";
 {
     CGFloat top = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     CGFloat bottom= self.navigationController.view.bounds.size.height;
-    
+    if (self.tabBarController)
+    {
+        bottom = self.tabBarController.tabBar.frame.origin.y;
+    }
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y = top;
     viewFrame.size.height = bottom - top;
