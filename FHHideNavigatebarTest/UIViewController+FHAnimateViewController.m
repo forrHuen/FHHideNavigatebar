@@ -123,7 +123,7 @@ static const char *amassKey = "amassKey";
 //更新导航栏位置和view的位置
 - (void)updateFrameWithDelta:(CGFloat)delta
 {
-    NSLog(@"____ddd = %f",self.amass);
+//    NSLog(@"____ddd = %f",self.amass);
     self.amass = self.amass + delta;
     //保证amass在0～44之间，用于计算透明度的值及记录距离
     self.amass = self.amass < 0.0f ? 0.0f : self.amass;
@@ -214,7 +214,7 @@ static const char *amassKey = "amassKey";
     return NO;
 }
 
-//设置参数
+//重设参数
 - (void)resetParams
 {
     CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
